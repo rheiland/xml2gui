@@ -74,6 +74,7 @@ def write_config_file(name):
     tree = ET.parse(full_xml_filename)  # this file cannot be overwritten; part of tool distro
     xml_root = tree.getroot()
     config_tab.fill_xml(xml_root)
+    user_tab.fill_xml(xml_root)
     tree.write(name)
 
 def get_config_files():
@@ -141,13 +142,12 @@ def run_button_cb(s):
 #    read_config.index = 0   # reset Dropdown 'Load Config' to 'DEFAULT' when Run interactively
 #    s.run(run_name, "--local ../bin/pc-nb config.xml")
 #    os.system("../cancer_biorobots ../config/PhysiCell_settings.xml &")
-#    os.system("../cancer_biorobots config.xml &")
-    cmd_str = "./myproj " + full_xml_filename + " &"
-#    os.system("myproj config.xml &")
-    os.system(cmd_str)
+    # cmd_str = "./myproj " + full_xml_filename + " &"
+    # os.system(cmd_str)
 
 run_button = widgets.Button(
-    description='Run',
+#    description='Run',
+    description='Write',
     button_style='success',  # 'success', 'info', 'warning', 'danger' or ''
     tooltip='Run simulation',
 )
