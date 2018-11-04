@@ -1,12 +1,13 @@
 # Jupyter Notebook GUI for a PhysiCell project
 
 This project requires a Python distribution with modules not found in the standard 
-library. In particular, it needs matplotlib (and all it dependencies), scipy.io, and Jupyter (notebooks). Perhaps the easiest way to get all of this in one download is to download and install the Anaconda Python 3.x distribution:
-https://www.anaconda.com/download/
+library. In particular, it needs matplotlib (and all it dependencies), scipy.io, and Jupyter (notebooks). You have at least a couple of different options:
 
+1) Perhaps the easiest way to get all of this in one download is to download and install the Anaconda Python 3.x distribution:
+https://www.anaconda.com/download/
 however, that distribution (which includes a LOT of additional modules), is ~500-600MB.
 
-If you want to downlod a much smaller bundle, but in multiple steps, you could try to:
+2) If you want to downlod a much smaller bundle, but in multiple steps, you could try to:
 - download the Miniconda Python 3.x installer (preferably 64-bit):  (~30 MB)
 https://conda.io/miniconda.html
 
@@ -16,7 +17,7 @@ conda install matplotlib
 conda install scipy
 conda install jupyter
 ```
-
+<hr>
 After you have the desired Python modules:
 
 - Copy your project's configuration file (.xml) to this directory, calling it "myconfig.xml"
