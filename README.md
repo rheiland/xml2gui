@@ -11,20 +11,25 @@ If you want to downlod a much smaller bundle, but in multiple steps, you could t
 https://conda.io/miniconda.html
 
 then install the additional, required modules:
-- conda install matplotlib
-- conda install scipy
-- conda install jupyter
+```
+conda install matplotlib
+conda install scipy
+conda install jupyter
+```
 
+After you have the desired Python modules:
 
 - Copy your project's configuration file (.xml) to this directory, calling it "myconfig.xml"
-- Copy your project's executable to this directory, calling it "myproj" (on Windows, call it "myproj.exe")
-
 - Generate the Python module of widgets for your user params (a "tab" in the Notebook GUI). From a Terminal/Command Prompt window, run:
 
 <i>python gen_user_tab.py myconfig.xml</i>
 
-- then run the notebook:
+Then run the notebook:
 
 <i>jupyter notebook PhysiCell.ipynb</i>
 
 
+Make changes to the configuration parameters via the GUI, press the 'Write' button, then run your simulation from a shell window, e.g.:
+```
+./cancer_biorobots myconfig.xml
+```
