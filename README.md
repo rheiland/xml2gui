@@ -21,7 +21,7 @@ conda install jupyter
 After you have the desired Python modules:
 
 - Copy your project's configuration file (.xml) to this directory, calling it "myconfig.xml"
-- Copy your project's executable to this directory, e.g., ```cancer_biorobots```, in the example below.
+- Copy your project's executable to this directory, e.g., ```heterogeneity```, in the example below.
 - Generate the Python module of widgets for your user params (a "tab" in the Notebook GUI). From a Terminal/Command Prompt window, run:
 
 ```python gen_user_tab.py myconfig.xml```
@@ -34,5 +34,10 @@ Then run the notebook:
 Make changes to the configuration parameters via the Jupyter notebook GUI, press the 'Write' button, then run your simulation from a shell window, e.g.:
 
 ```
-./cancer_biorobots myconfig.xml
+heterogeneity myconfig.xml
+```
+If you don't have your current working directory in your PATH, you will need to be more explicit, e.g.:
+```
+./heterogeneity myconfig.xml     # on Unix
+.\heterogeneity myconfig.xml     # on Windows
 ```
