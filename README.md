@@ -22,14 +22,15 @@ After you have the desired Python modules:
 - Copy your project's configuration file (.xml) to this directory, calling it "myconfig.xml"
 - Generate the Python module of widgets for your user params (a "tab" in the Notebook GUI). From a Terminal/Command Prompt window, run:
 
-<i>python gen_user_tab.py myconfig.xml</i>
+```python gen_user_tab.py myconfig.xml```
 
 Then run the notebook:
 
-<i>jupyter notebook PhysiCell.ipynb</i>
+```jupyter notebook PhysiCell.ipynb```
 
 
 Make changes to the configuration parameters via the GUI, press the 'Write' button, then run your simulation from a shell window, e.g.:
+
 ```
 ./cancer_biorobots myconfig.xml
 ```
