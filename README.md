@@ -3,7 +3,7 @@
 This project requires a Python distribution with modules not found in the standard 
 library. In particular, it needs matplotlib (and all its dependencies), scipy.io, and Jupyter (notebooks). You have at least a couple of different options:
 
-1) Perhaps the easiest way to get all of this in one download is to download and install the Anaconda Python 3.x distribution:
+1) Perhaps the easiest way to get all of this is to download and install the Anaconda Python 3.x distribution:
 https://www.anaconda.com/download/
 however, that distribution (which includes a LOT of additional modules), is ~500-600MB.
 
