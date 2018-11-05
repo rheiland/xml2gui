@@ -1,7 +1,7 @@
 # Jupyter Notebook GUI for a PhysiCell project
 
 This project requires a Python distribution with modules not found in the standard 
-library. In particular, it needs matplotlib (and all it dependencies), scipy.io, and Jupyter (notebooks). You have at least a couple of different options:
+library. In particular, it needs matplotlib (and all its dependencies), scipy.io, and Jupyter (notebooks). You have at least a couple of different options:
 
 1) Perhaps the easiest way to get all of this in one download is to download and install the Anaconda Python 3.x distribution:
 https://www.anaconda.com/download/
