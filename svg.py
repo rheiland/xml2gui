@@ -30,7 +30,7 @@ class SVGTab(object):
         self.output_dir = '.'
 #        self.output_dir = 'tmpdir'
 
-        max_frames = 5 
+        max_frames = 1 
         self.svg_plot = interactive(self.plot_svg, frame=(0, max_frames), continuous_update=False)
         svg_plot_size = '500px'
         self.svg_plot.layout.width = svg_plot_size
@@ -43,7 +43,7 @@ class SVGTab(object):
         self.scale_radius = 1.0
         self.axes_min = 0.0
         self.axes_max = 2000   # hmm, this can change (TODO?)
-        self.fig = plt.figure(figsize=(7, 7))
+        self.fig = plt.figure(figsize=(6, 6))
 #        self.tab = HBox([svg_plot], layout=tab_layout)
 
         self.max_frames = BoundedIntText(
