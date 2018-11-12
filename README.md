@@ -44,4 +44,4 @@ If you don't have your current working directory in your PATH, you will need to 
 .\heterogeneity myconfig.xml     # on Windows
 ```
 
-To launch the notebook, click this button: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/rheiland/binder-test/master?filepath=PhysiCell.ipynb) then click 'Run' in the notebook to render the GUI.
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/rheiland/xml2gui/master?filepath=PhysiCell.ipynb) Click the binder badge to play with the notebook from your browser without installing anything.
