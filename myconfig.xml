@@ -1,0 +1,52 @@
+<PhysiCell_settings version="devel-version">
+	<domain>
+		<x_min>-1000.0</x_min>
+		<x_max>1000.0</x_max>
+		<y_min>-1000.0</y_min>
+		<y_max>1000.0</y_max>
+		<z_min>-10.0</z_min>
+		<z_max>10.0</z_max>
+		<dx>20.0</dx>
+		<dy>20.0</dy>
+		<dz>20.0</dz>
+		<use_2D>true</use_2D>
+	</domain>
+	
+	<overall>
+		<max_time units="min">1440.0</max_time> 
+		<time_units>min</time_units>
+		<space_units>micron</space_units>
+	</overall>
+	
+	<parallel>
+		<omp_num_threads>4</omp_num_threads>
+	</parallel> 
+	
+	<save>
+		<folder>output</folder>  
+
+		<full_data>
+			<interval units="min">60</interval>
+			<enable>True</enable>
+		</full_data>
+		
+		<SVG>
+			<interval units="min">60</interval>
+			<enable>True</enable>
+		</SVG>
+		
+		<legacy_data>
+			<enable>false</enable>
+		</legacy_data>
+	</save>
+	
+	<user_parameters>
+		<tumor_radius type="double" units="micron">500.0</tumor_radius>
+		<oncoprotein_mean type="double" units="dimensionless">1.0</oncoprotein_mean>
+		<oncoprotein_sd type="double" units="dimensionless">0.25</oncoprotein_sd>
+		<oncoprotein_min type="double" units="dimensionless">0.0</oncoprotein_min>
+		<oncoprotein_max type="double" units="dimensionless">2.0</oncoprotein_max>
+		<random_seed type="int" units="dimensionless">0</random_seed>
+	</user_parameters>
+	
+</PhysiCell_settings>
