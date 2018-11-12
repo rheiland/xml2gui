@@ -24,49 +24,57 @@ class UserTab(object):
           step=0.02,
           style=style, layout=layout)
 
-        self.initial_density_ecm = FloatText(
-          description='initial_density_ecm',
+        self.oncoprotein_mean = FloatText(
+          description='oncoprotein_mean',
           step=0.02,
           style=style, layout=layout)
 
-        self.leader_adhesion = FloatText(
-          description='leader_adhesion',
+        self.oncoprotein_sd = FloatText(
+          description='oncoprotein_sd',
           step=0.02,
           style=style, layout=layout)
 
-        self.follower_adhesion = FloatText(
-          description='follower_adhesion',
+        self.oncoprotein_min = FloatText(
+          description='oncoprotein_min',
           step=0.02,
           style=style, layout=layout)
 
-        self.default_cell_speed = FloatText(
-          description='default_cell_speed',
+        self.oncoprotein_max = FloatText(
+          description='oncoprotein_max',
           step=0.02,
+          style=style, layout=layout)
+
+        self.random_seed = IntText(
+          description='random_seed',
+          step=1,
           style=style, layout=layout)
 
         self.tab = VBox([
-          HBox([self.tumor_radius, Label('')]), 
-          HBox([self.initial_density_ecm, Label('')]), 
-          HBox([self.leader_adhesion, Label('')]), 
-          HBox([self.follower_adhesion, Label('')]), 
-          HBox([self.default_cell_speed, Label('')]), 
+          HBox([self.tumor_radius, Label('micron')]), 
+          HBox([self.oncoprotein_mean, Label('')]), 
+          HBox([self.oncoprotein_sd, Label('')]), 
+          HBox([self.oncoprotein_min, Label('')]), 
+          HBox([self.oncoprotein_max, Label('')]), 
+          HBox([self.random_seed, Label('')]), 
         ])
 
     # Populate the GUI widgets with values from the XML
     def fill_gui(self, xml_root):
         uep = xml_root.find('.//user_parameters')  # find unique entry point into XML
         self.tumor_radius.value = float(uep.find('.//tumor_radius').text)
-        self.initial_density_ecm.value = float(uep.find('.//initial_density_ecm').text)
-        self.leader_adhesion.value = float(uep.find('.//leader_adhesion').text)
-        self.follower_adhesion.value = float(uep.find('.//follower_adhesion').text)
-        self.default_cell_speed.value = float(uep.find('.//default_cell_speed').text)
+        self.oncoprotein_mean.value = float(uep.find('.//oncoprotein_mean').text)
+        self.oncoprotein_sd.value = float(uep.find('.//oncoprotein_sd').text)
+        self.oncoprotein_min.value = float(uep.find('.//oncoprotein_min').text)
+        self.oncoprotein_max.value = float(uep.find('.//oncoprotein_max').text)
+        self.random_seed.value = int(uep.find('.//random_seed').text)
 
 
     # Read values from the GUI widgets to enable editing XML
     def fill_xml(self, xml_root):
         uep = xml_root.find('.//user_parameters')  # find unique entry point into XML 
         uep.find('.//tumor_radius').text = str(self.tumor_radius.value)
-        uep.find('.//initial_density_ecm').text = str(self.initial_density_ecm.value)
-        uep.find('.//leader_adhesion').text = str(self.leader_adhesion.value)
-        uep.find('.//follower_adhesion').text = str(self.follower_adhesion.value)
-        uep.find('.//default_cell_speed').text = str(self.default_cell_speed.value)
+        uep.find('.//oncoprotein_mean').text = str(self.oncoprotein_mean.value)
+        uep.find('.//oncoprotein_sd').text = str(self.oncoprotein_sd.value)
+        uep.find('.//oncoprotein_min').text = str(self.oncoprotein_min.value)
+        uep.find('.//oncoprotein_max').text = str(self.oncoprotein_max.value)
+        uep.find('.//random_seed').text = str(self.random_seed.value)
