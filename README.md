@@ -31,7 +31,7 @@ Then run the notebook:
 ```jupyter notebook PhysiCell.ipynb```
 
 
-When the notebook starts in your browser, you will need to click the "Run" button (near the middle, along the top). After a short delay, this should display the GUI. 
+When the notebook starts in your browser, in the "Cell" menu, click "Run All".
 
 Make changes to the configuration parameters via the Jupyter notebook GUI, press the 'Write' button, then run your simulation from a shell window, e.g.:
 
