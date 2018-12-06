@@ -13,7 +13,7 @@
 	</domain>
 	
 	<overall>
-		<max_time units="min">1440.0</max_time> 
+		<max_time units="min">2880.0</max_time> 
 		<time_units>min</time_units>
 		<space_units>micron</space_units>
 	</overall>
@@ -26,12 +26,12 @@
 		<folder>output</folder>  
 
 		<full_data>
-			<interval units="min">60</interval>
+			<interval units="min">240</interval>
 			<enable>True</enable>
 		</full_data>
 		
 		<SVG>
-			<interval units="min">60</interval>
+			<interval units="min">240</interval>
 			<enable>True</enable>
 		</SVG>
 		
@@ -46,7 +46,8 @@
 		<oncoprotein_sd type="double" units="dimensionless">0.25</oncoprotein_sd>
 		<oncoprotein_min type="double" units="dimensionless">0.0</oncoprotein_min>
 		<oncoprotein_max type="double" units="dimensionless">2.0</oncoprotein_max>
-		<random_seed type="int" units="dimensionless">0</random_seed>
+		<random_seed type="int" units="dimensionless">13</random_seed>
+		<miracle_flag type="bool">False</miracle_flag>
 	</user_parameters>
 	
 </PhysiCell_settings>

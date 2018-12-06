@@ -115,7 +115,8 @@ for child in uep:
                     delta_val = 0.01  # if initial value=0.0, we're totally guessing at what a good delta is
                 print('double: ',float(child.text),', delta_val=',delta_val)
 
-                user_tab_header += indent2 + "value='" + child.text + "',\n"
+                user_tab_header += indent2 + "value=" + child.text + ",\n"
+                # Note: "step" values will advance the value to the nearest multiple of the step value itself :-/
                 user_tab_header += indent2 + "step=" + str(delta_val) + ",\n"
 
             elif child.attrib['type'] == "int":  # warning: math.log(1000,10)=2.99..., math.log10(1000)=3  Sigh.
@@ -125,11 +126,13 @@ for child in uep:
                     delta_val = 1  # if initial value=0.0, we're totally guessing at what a good delta is
                 print('int: ',int(child.text),', delta_val=',delta_val)
 
-                user_tab_header += indent2 + "value='" + child.text + "',\n"
+                user_tab_header += indent2 + "value=" + child.text + ",\n"
                 user_tab_header += indent2 + "step=" + str(delta_val) + ",\n"
 
             elif child.attrib['type'] == "bool":
                 pass
+
+            # And finally, append the info at the end of this widget
             user_tab_header += indent2 + "style=style, layout=layout)\n"
 
     #        self.tab = VBox([HBox([self.therapy_activation_time, Label('min')]), 
