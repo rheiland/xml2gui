@@ -4,6 +4,7 @@
 # Authors: Daniel Mishler, Tyler Zhang, and Eric Bower (undergraduates in ISE/SICE/IU); Randy Heiland
 #
 import sys
+import math
 import xml.etree.ElementTree as ET
 
 if (len(sys.argv) < 2):
@@ -78,7 +79,7 @@ root = tree.getroot()
 uep = root.find('.//user_parameters')  # find unique entry point (uep) to user params
 indent = "        "
 indent2 = "          "
-widgets = {"double":"FloatText", "int":"IntText", "string":"Text"}
+widgets = {"double":"FloatText", "int":"IntText", "bool":"Checkbox", "string":"Text"}
 type_cast = {"double":"float", "int":"int", "bool":"bool", "string":""}
 vbox_str = "\n" + indent + "self.tab = VBox([\n"
 
@@ -101,10 +102,34 @@ for child in uep:
             #   style=style, layout=layout)
             user_tab_header += "\n" + indent + full_name + " = " + widgets[child.attrib['type']] + "(\n"
             user_tab_header += indent2 + "description='" + child.tag + "',\n"
+
+            # Try to calculate and provide a "good" delta step (for the tiny "up/down" arrows on a numeric widget)
             if child.attrib['type'] == "double":
-                user_tab_header += indent2 + "step=0.02,\n"    # improve on this
-            elif child.attrib['type'] == "int":
-                user_tab_header += indent2 + "step=1,\n"
+                fval_abs = abs(float(child.text))
+                if (fval_abs > 0.0):
+                    if (fval_abs > 1.0):  # crop
+                        delta_val = pow(10, int(math.log10(abs(float(child.text)))) - 1)
+                    else:   # round
+                        delta_val = pow(10, round(math.log10(abs(float(child.text)))) - 1)
+                else:
+                    delta_val = 0.01  # if initial value=0.0, we're totally guessing at what a good delta is
+                print('double: ',float(child.text),', delta_val=',delta_val)
+
+                user_tab_header += indent2 + "value='" + child.text + "',\n"
+                user_tab_header += indent2 + "step=" + str(delta_val) + ",\n"
+
+            elif child.attrib['type'] == "int":  # warning: math.log(1000,10)=2.99..., math.log10(1000)=3  Sigh.
+                if (abs(int(child.text)) > 0):
+                    delta_val = pow(10,int(math.log10(abs(int(child.text)))) - 1)
+                else:
+                    delta_val = 1  # if initial value=0.0, we're totally guessing at what a good delta is
+                print('int: ',int(child.text),', delta_val=',delta_val)
+
+                user_tab_header += indent2 + "value='" + child.text + "',\n"
+                user_tab_header += indent2 + "step=" + str(delta_val) + ",\n"
+
+            elif child.attrib['type'] == "bool":
+                pass
             user_tab_header += indent2 + "style=style, layout=layout)\n"
 
     #        self.tab = VBox([HBox([self.therapy_activation_time, Label('min')]), 
