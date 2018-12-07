@@ -43,15 +43,17 @@ class SubstrateTab(object):
         )
         self.max_frames.observe(self.update_max_frames)
 
-        self.field_min_max = {'oxygen': [0., 38.], 'glucose': [0.8, 1.]}
+        self.field_min_max = {'dummy': [0., 1.]}
         # hacky I know, but make a dict that's got (key,value) reversed from the dict in the Dropdown below
-        self.field_dict = {0:'oxygen', 1:'glucose'}
+        self.field_dict = {0:'dummy'}
+
         self.mcds_field = Dropdown(
-            options={'oxygen': 0, 'glucose': 1},
+            options={'dummy': 0},
             value=0,
             #     description='Field',
            layout=Layout(width=constWidth)
         )
+        # print("substrate __init__: self.mcds_field.value=",self.mcds_field.value)
 #        self.mcds_field.observe(self.mcds_field_cb)
         self.mcds_field.observe(self.mcds_field_changed_cb)
 
@@ -166,6 +168,46 @@ class SubstrateTab(object):
                             display='flex'))
         self.tab = VBox([row1, row2, self.mcds_plot])
 
+    #---------------------------------------------------
+    def update_dropdown_fields(self, data_dir):
+        # print('update_dropdown_fields called --------')
+        self.output_dir = data_dir
+        tree = None
+        try:
+            fname = os.path.join(self.output_dir, "initial.xml")
+            tree = ET.parse(fname)
+#            return
+        except:
+            print("Cannot open ",fname," to get names of substrate fields.")
+            return
+
+        xml_root = tree.getroot()
+        self.field_min_max = {}
+        self.field_dict = {}
+        dropdown_options = {}
+        uep = xml_root.find('.//variables')
+        comment_str = ""
+        field_idx = 0
+        if (uep):
+            for elm in uep.findall('variable'):
+                # print("-----> ",elm.attrib['name'])
+                self.field_min_max[elm.attrib['name']] = [0., 1.]
+                self.field_dict[field_idx] = elm.attrib['name']
+                dropdown_options[elm.attrib['name']] = field_idx
+                field_idx += 1
+
+#        constWidth = '180px'
+        # print('options=',dropdown_options)
+        self.mcds_field.value=0
+        self.mcds_field.options=dropdown_options
+#         self.mcds_field = Dropdown(
+# #            options={'oxygen': 0, 'glucose': 1},
+#             options=dropdown_options,
+#             value=0,
+#             #     description='Field',
+#            layout=Layout(width=constWidth)
+#         )
+
     def update_max_frames_expected(self, value):  # called when beginning an interactive Run
         self.max_frames.value = value  # assumes naming scheme: "snapshot%08d.svg"
         self.mcds_plot.children[0].max = self.max_frames.value
@@ -194,6 +236,9 @@ class SubstrateTab(object):
         self.mcds_plot.children[0].max = self.max_frames.value
 
     def mcds_field_changed_cb(self, b):
+        # print("mcds_field_changed_cb: self.mcds_field.value=",self.mcds_field.value)
+        if (self.mcds_field.value == None):
+            return
         self.field_index = self.mcds_field.value + 4
 
         field_name = self.field_dict[self.mcds_field.value]
