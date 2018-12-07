@@ -166,6 +166,9 @@ gui = widgets.VBox(children=[tabs, run_button])
 #fill_gui_params("../config/PhysiCell_settings.xml")
 fill_gui_params(full_xml_filename)
 
+# pass in (relative) directory where output data is located
 #svg.update(read_config.value)
-svg.update("output")
-sub.update("output")
+output_dir = "output"
+svg.update(output_dir)
+sub.update_dropdown_fields(output_dir)
+sub.update(output_dir)
